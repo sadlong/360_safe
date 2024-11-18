@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //
     setTabBarIndex (0) ;
 
-    //
+    //wtf?
     setMouseTracking (true);
 }
 
@@ -320,7 +320,8 @@ void MainWindow::showStackedWidget () {
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    if(event->button()==Qt::LeftButton){//左键拖动窗体
+    //左键拖动窗体
+    if(event->button() == Qt::LeftButton || event->button() == Qt::RightButton){
        relativePos = this->pos()- event->globalPos();
    }
 }

@@ -35,3 +35,19 @@ void MainWindow::optionToolButton (QToolButton * tb, QIcon icon, QString text) {
 ```
 
 这里的QAction相当于是以代码来代替ui了，`setProperty`函数个人感觉主要是为qss服务的，我尝试注释掉那一行导致按钮的背景颜色改变了
+
+
+
+**实现网页跳转**
+
+```cpp
+QAction *mianfei = new QAction( tr("360为什么免费"), this);
+connect(mianfei, SIGNAL(triggered()), this, SLOT(mianfeiActionSlot()));
+mianfei->setIcon (QIcon(":/menu/images/menu/menu_mian.png"));
+
+void MainWindow::mianfeiActionSlot(){
+    const QUrl url("http://se.360.cn/wel/whyFree.html");
+    QDesktopServices::openUrl(url);
+}	
+```
+

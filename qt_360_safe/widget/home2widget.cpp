@@ -3,6 +3,8 @@
 #include <QTreeWidgetItem>
 #include <qdebug.h>
 
+//电脑体检点击“立即体检”后的界面
+
 Home2Widget::Home2Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Home2Widget)

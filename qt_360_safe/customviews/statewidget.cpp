@@ -23,7 +23,7 @@ int StateWidget::getState () {
 void StateWidget::show (QString icon, QString txt, int state) {
     ui->title->setText (txt);
     ui->icon->setStyleSheet (QString("border-image: url(%1)").arg (icon));
-    setState (state);
+    setState(state);
 }
 
 void StateWidget::setState (int state) {

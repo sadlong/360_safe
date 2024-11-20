@@ -43,7 +43,7 @@ private:
     int mIndex;
 
 signals:
-    void onHome2IntoNextSignal ();
+    void onHome2IntoNextSignal();
 
 
 private slots:
@@ -52,14 +52,14 @@ private slots:
     void onTimeOut();
 
 private:
-    void optionTreeWidget ();
-    QWidget * titleWidget (Home2TreeObj * obj);
-    QWidget * cellWidget (Home2TreeObj * obj, bool isLast);
-    void reset ();
+    void optionTreeWidget();
+    QWidget * titleWidget(Home2TreeObj * obj);
+    QWidget * cellWidget(Home2TreeObj * obj, bool isLast);
+    void reset();
 
 public:
-    void start ();
-    void stop ();
+    void start();
+    void stop();
 };
 
 #endif // HOME2WIDGET_H

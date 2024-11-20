@@ -51,3 +51,24 @@ void MainWindow::mianfeiActionSlot(){
 }	
 ```
 
+
+
+
+
+## home2widget.cpp
+
+**emit发射信号关键字**
+
+在home2widget.h中声明
+
+```cpp
+signals:
+    void onHome2IntoNextSignal();
+```
+
+然后即可使用
+
+```cpp
+emit onHome2IntoNextSignal();
+```
+

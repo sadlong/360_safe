@@ -348,7 +348,7 @@ void MainWindow::showLoginPopupWidget () {
     if (loginPopupWidget == NULL) {
         loginPopupWidget = new PopupWidget (this);
         loginPopupWidget->setArrow (PopupArrowDirection::UP, QRect(225, 0, 10, 10));
-        loginPopupWidget->setGeometry (630, 95, 250, 140);
+        loginPopupWidget->setGeometry(630, 95, 250, 140);
         connect (loginPopupWidget, SIGNAL(onMouseEnterPopupWidget(PopupWidget*)), this,
                  SLOT(onMouseEnterPopupWidgetSlot(PopupWidget*)));
         connect (loginPopupWidget, SIGNAL(onMouseLeavePopupWidget(PopupWidget*)), this,

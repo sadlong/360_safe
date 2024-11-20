@@ -18,7 +18,7 @@ HomeWidget::HomeWidget(QWidget *parent) :
     ui->title->setStyleSheet("color: #444444;font-size: 25px;");
     ui->subtitle->setStyleSheet("color: #9b9999;font-size: 16px;");
     //wallBallWidget是自定义的类 实现了动图的效果
-    ui->wallBallWidget->setProgress(0.3);
+    ui->wallBallWidget->setProgress(0.6);   //设置了圆形里面的容量 0-0.5为橙色 0.6-1为绿色
 
     //右下角四个图标
     optionToolButtons();
@@ -28,7 +28,8 @@ HomeWidget::HomeWidget(QWidget *parent) :
     //这里好像有点bug 故障检测第九次之后点击取消检测就会卡死
     home2Widget = new Home2Widget(this);
     home2Widget->setVisible(false);
-    connect (home2Widget, SIGNAL(onHome2IntoNextSignal()), this, SLOT(onHome2IntoNextSlot()));
+//    home2Widget = NULL;
+    connect(home2Widget, SIGNAL(onHome2IntoNextSignal()), this, SLOT(onHome2IntoNextSlot()));
 }
 
 HomeWidget::~HomeWidget()
@@ -45,7 +46,7 @@ void HomeWidget::optionStateWidgets () {
     ui->yanZheng->show(":/other/images/other/icon_fanghuzhongxin.png", "验证", 0);
 
 
-    //一下信号与槽函数并未实现
+    //以下信号与槽函数并未实现
     connect(ui->fangHuZhongXin, SIGNAL(onStateWidgetHoverSinal(StateWidget*)),
              this, SLOT(onStateWidgetHoverSlot(StateWidget*)));
     connect(ui->fangHuZhongXin, SIGNAL(onStateWidgetNoHoverSinal(StateWidget*)),
@@ -89,13 +90,15 @@ void HomeWidget::onStateWidgetNoHoverSlot(StateWidget*s) {
 
 void HomeWidget::on_pushButton_clicked()
 {
+//    home2Widget = new Home2Widget(this);
     home2Widget->setVisible (true);
     ui->home->setVisible (false);
-    home2Widget->start ();
+    home2Widget->start();
 }
 
 void HomeWidget::onHome2IntoNextSlot() {
-    home2Widget->setVisible (false);
-    ui->home->setVisible (true);
-    home2Widget->stop ();
+    home2Widget->setVisible(false);
+    ui->home->setVisible(true);
+    home2Widget->stop();    //这个stop函数只是将计时器stop了，所以再点击“立即检测”就会接着上一次的追加展示
+//    delete home2Widget;
 }

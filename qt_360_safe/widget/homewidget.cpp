@@ -91,8 +91,8 @@ void HomeWidget::onStateWidgetNoHoverSlot(StateWidget*s) {
 void HomeWidget::on_pushButton_clicked()
 {
 //    home2Widget = new Home2Widget(this);
-    home2Widget->setVisible (true);
-    ui->home->setVisible (false);
+    home2Widget->setVisible (true); //子窗口显示
+    ui->home->setVisible (false);   //当前这个隐藏
     home2Widget->start();
 }
 

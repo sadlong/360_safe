@@ -11,50 +11,54 @@ Horse2Widget::Horse2Widget(QWidget *parent) :
 
     //
     //ui->background->setStyleSheet ("QWidget#background{background-color: rgba(255, 255, 255, 230);}");
-    ui->bottom->setStyleSheet ("QWidget#bottom{background-color: #FFFFFF;}");
-    ui->top->setStyleSheet ("QWidget#top{background-color: #f1f9f1;}");
-    ui->pushButton->setStyleSheet ("background-color: transparent;border-radius: 16px;color: #4cb702;font-size: 15px;border: 1px solid #4cb702;");
-    ui->title->setStyleSheet ("color: #444444;font-size: 25px;");
-    ui->subtitle->setStyleSheet ("color: #9b9999;font-size: 16px;");
+    ui->bottom->setStyleSheet("QWidget#bottom{background-color: #FFFFFF;}");
+    ui->top->setStyleSheet("QWidget#top{background-color: #f1f9f1;}");
+    ui->pushButton->setStyleSheet("background-color: transparent;border-radius: 16px;color: #4cb702;font-size: 15px;border: 1px solid #4cb702;");
+    ui->title->setStyleSheet("color: #444444;font-size: 25px;");
+    ui->subtitle->setStyleSheet("color: #9b9999;font-size: 16px;");
     //
-    ui->waveBall->setWaveMode (WaveBallMode::noWaveMode);
-    ui->waveBall->setProgress (1);
-    ui->waveBall->showScores (false);
-    ui->waveBall->setIcon (":/horse/images/horse/icon_horse.png", QSize(40, 40));
-    ui->waveBall->startRound ();
+    ui->waveBall->setWaveMode(WaveBallMode::noWaveMode);
+    ui->waveBall->setProgress(1);
+    ui->waveBall->showScores(false);
+    ui->waveBall->setIcon(":/horse/images/horse/icon_horse.png", QSize(40, 40));
+    ui->waveBall->startRound();
     //
 
-    //
-    reset ();
+    //这行好像写不写都一样。。。
+    reset();
 
     scanTimer = new QTimer;
-    connect (scanTimer, SIGNAL(timeout()), this, SLOT(onScanTimerOut()));
+    connect(scanTimer, SIGNAL(timeout()), this, SLOT(onScanTimerOut()));
 }
 
-void Horse2Widget::reset () {
+//重置进度 老问题 咋改都不对。。。
+void Horse2Widget::reset() {
+    mCurrentScanWidget = nullptr;
     randTimerDis = 0;
     timerTick = 0;
-    optionScanWidgets ();
-    ui->progreBar->setProgress (0);
+    optionScanWidgets();
+    ui->progreBar->setProgress(0);
 }
 
-void Horse2Widget::start () {
+//mCurrentScanWidget来自自定义类ScanWidget
+void Horse2Widget::start() {
     mScanIndex = 0;
-    scanTimer->start (1000*1);
+    scanTimer->start(1000*1);
 
-    ui->scan_1->setScanState (ScanState::scan);
-    mCurrentScanWidget = ui->scan_1;
+    ui->scan_1->setScanState(ScanState::scan);
+    mCurrentScanWidget = ui->scan_1;    //从1开始扫描
 }
 
-void Horse2Widget::stop () {
-    scanTimer->stop ();
+void Horse2Widget::stop() {
+    scanTimer->stop();
 }
 
 void Horse2Widget::onScanTimerOut() {
     timerTick++;
-   ui->timer->setText (QString().sprintf("已用时: %02d:%02d:%02d", timerTick/3600, (timerTick%3600)/60, timerTick%60));
+    //时间显示没有问题
+    ui->timer->setText(QString().sprintf("已用时: %02d:%02d:%02d", timerTick/3600, (timerTick%3600)/60, timerTick%60));
 
-    if (randTimerDis > 0 ) {
+    if(randTimerDis > 0 ) {
         randTimerDis--;
         return ;
     }
@@ -64,7 +68,7 @@ void Horse2Widget::onScanTimerOut() {
     // 随机生成一个时间间隔
     randTimerDis = qrand()%5 + 2;
 
-    mCurrentScanWidget->setScanState (ScanState::finished);
+    mCurrentScanWidget->setScanState(ScanState::finished);
     if (mScanIndex == 0) {
         mCurrentScanWidget = ui->scan_2;
     } else if (mScanIndex == 1) {
@@ -90,15 +94,16 @@ void Horse2Widget::onScanTimerOut() {
         mCurrentScanWidget->setScanState (ScanState::scan);
     }
 
-    mScanIndex++;
+    //加上了取模 就变成循环的了
+    mScanIndex = (mScanIndex+1)%9;
 
     //
     ui->progreBar->setProgress (mScanIndex*1.0/10);
-    qDebug () << "mScanIndex: " << mScanIndex;
+    //qDebug () << "mScanIndex: " << mScanIndex;
 
     // 扫描完成.
     if (mCurrentScanWidget == NULL) {
-        stop ();
+        stop();
     }
 }
 
@@ -112,7 +117,7 @@ void Horse2Widget::on_pushButton_clicked()
     emit onHorse2IntoNextSignal();
 }
 
-void Horse2Widget::optionScanWidgets () {
+void Horse2Widget::optionScanWidgets() {
    ui->scan_1->setTitle ("顽固木马");
    ui->scan_1->setIcon (":/other/images/other/icon_liulanqi.png");
    ui->scan_2->setTitle ("顽固木马");

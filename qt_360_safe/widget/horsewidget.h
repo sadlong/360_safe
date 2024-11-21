@@ -38,6 +38,7 @@ private slots:
     void onHorse2IntoNextSlot ();
     void on_tbQuanpan_clicked();
     void on_pushButton_2_clicked();
+    void on_tbAnweizhi_clicked();
 };
 
 #endif // HORSEWIDGET_H

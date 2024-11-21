@@ -53,8 +53,6 @@ void MainWindow::mianfeiActionSlot(){
 
 
 
-
-
 ## home2widget.cpp
 
 **emit发射信号关键字**

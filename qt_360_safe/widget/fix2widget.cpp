@@ -20,7 +20,7 @@ Fix2Widget::Fix2Widget(QWidget *parent) :
     ui->waveBall->setIcon (":/horse/images/horse/icon_fix.png", QSize(40, 40));
     ui->waveBall->startRound ();
     //
-    ui->progreBar->setProgress (0.3);
+    ui->progreBar->setProgress (0.5);   //进度条
 
     optionListWidget ();
 }
@@ -36,7 +36,7 @@ void Fix2Widget::on_pushButton_clicked()
 }
 
 void Fix2Widget::optionListWidget () {
-    for (int i = 0; i < 4; i++ ) {
+    for (int i = 1; i <= 5; i++ ) {
         QListWidgetItem *item = new QListWidgetItem;
         item->setSizeHint(QSize(900, 40));  //每次改变Item的高度
 
@@ -55,7 +55,7 @@ void Fix2Widget::optionListWidget () {
         subtitle->setGeometry (180, 0, 80, 40);
         subtitle->setAlignment (Qt::AlignCenter);
         subtitle->setStyleSheet ("color: #ababab; font-size:12px");
-        subtitle->setText ("1223456789");
+        subtitle->setText (QString::number(i));
 
         ui->listWidget->addItem (item);
         ui->listWidget->setItemWidget(item, widget);

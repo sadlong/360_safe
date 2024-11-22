@@ -46,50 +46,20 @@ void FixWidget::onFix2IntoNextSlot() {
 void FixWidget::optionToolButtons () {
 
     //
-    optionToolButton (ui->tb1,
-                      QIcon(":/horse/images/horse/icon_quanpansaomiao.png"),
-                      "单项修补",
-                      QSize(34, 32),
-                      "horsewidget_toolbutton_1") ;
+    optionToolButton (ui->tb1, QIcon(":/horse/images/horse/icon_quanpansaomiao.png"), "单项修补", QSize(34, 32), "horsewidget_toolbutton_1") ;
 
-    optionToolButton (ui->tb2,
-                      QIcon(":/horse/images/horse/icon_xinrenqu.png"),
-                      "信任区",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_1") ;
-    optionToolButton (ui->tb3,
-                      QIcon(":/horse/images/horse/icon_xinrenqu.png"),
-                      "恢复区",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_2") ;
-    optionToolButton (ui->tb4, QIcon(":/horse/images/horse/icon_huifuqu.png"),
-                      "补丁管理",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_2") ;
-    optionToolButton (ui->tb5, QIcon(":/horse/images/horse/icon_shangbaoqu.png"),
-                      "驱动管理", QSize(32, 32),
-                      "horsewidget_toolbutton_2") ;
+    optionToolButton (ui->tb2, QIcon(":/horse/images/horse/icon_xinrenqu.png"), "信任区", QSize(32, 32), "horsewidget_toolbutton_1") ;
+    optionToolButton (ui->tb3, QIcon(":/horse/images/horse/icon_xinrenqu.png"), "恢复区", QSize(32, 32), "horsewidget_toolbutton_2") ;
+    optionToolButton (ui->tb4, QIcon(":/horse/images/horse/icon_huifuqu.png"), "补丁管理", QSize(32, 32), "horsewidget_toolbutton_2") ;
+    optionToolButton (ui->tb5, QIcon(":/horse/images/horse/icon_shangbaoqu.png"), "驱动管理", QSize(32, 32), "horsewidget_toolbutton_2") ;
 
     //
-    optionToolButton (ui->tb6, QIcon(":/horse/images/horse/icon_icon_1.png"),
-                      "驱动大师",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_3") ;
-    optionToolButton (ui->tb7, QIcon(":/horse/images/horse/icon_icon_2.png"),
-                      "主页维护",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_3") ;
-    optionToolButton (ui->tb8, QIcon(":/horse/images/horse/icon_icon_3.png"),
-                      "主页修复",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_3") ;
+    optionToolButton (ui->tb6, QIcon(":/horse/images/horse/icon_icon_1.png"), "驱动大师", QSize(32, 32), "horsewidget_toolbutton_3") ;
+    optionToolButton (ui->tb7, QIcon(":/horse/images/horse/icon_icon_2.png"), "主页维护", QSize(32, 32), "horsewidget_toolbutton_3") ;
+    optionToolButton (ui->tb8, QIcon(":/horse/images/horse/icon_icon_3.png"), "主页修复", QSize(32, 32), "horsewidget_toolbutton_3") ;
 }
 
-void FixWidget::optionToolButton (QToolButton * tb,
-                                    QIcon icon,
-                                    QString text,
-                                    QSize size,
-                                    QString property) {
+void FixWidget::optionToolButton (QToolButton * tb, QIcon icon, QString text, QSize size, QString property) {
     QAction *pAction = new QAction(this);
     pAction->setText(text);
     pAction->setIcon(icon);

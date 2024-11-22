@@ -15,26 +15,16 @@ FuctionsWidget::FuctionsWidget(QWidget *parent) :
     ui->background->setStyleSheet ("background-color: #FFFFFF;");
     ui->listWidgetBackGround->setStyleSheet ("background-color: #F3F3F3;");
 
-    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png",
-                                       ":/other/images/other/icon_fanghuzhongxin.png",
-                                       "全部工具", 0));
-    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png",
-                                       ":/other/images/other/icon_fanghuzhongxin.png",
-                                       "电脑安全", 1));
-    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png",
-                                       ":/other/images/other/icon_fanghuzhongxin.png",
-                                       "网络优化", 1));
-    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png",
-                                       ":/other/images/other/icon_fanghuzhongxin.png",
-                                       "系统工具", 1));
-    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png",
-                                       ":/other/images/other/icon_fanghuzhongxin.png", "游戏优化", 1));
-    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png",
-                                       ":/other/images/other/icon_fanghuzhongxin.png",
-                                       "实用工具", 1));
-    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png",
-                                       ":/other/images/other/icon_fanghuzhongxin.png",
-                                       "我的工具", 0));
+    //分层级的list 0一个层级 1一个层级 但是下面的实现只有两层 也就是0和1
+    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png", ":/other/images/other/icon_fanghuzhongxin.png", "全部工具", 0));
+    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png", ":/other/images/other/icon_fanghuzhongxin.png", "电脑安全", 1));
+    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png", ":/other/images/other/icon_fanghuzhongxin.png", "网络优化", 1));
+    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png", ":/other/images/other/icon_fanghuzhongxin.png", "系统工具", 1));
+    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png", ":/other/images/other/icon_fanghuzhongxin.png", "游戏优化", 1));
+    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png", ":/other/images/other/icon_fanghuzhongxin.png", "实用工具", 1));
+    functionList.append (new FunctionsItem(0, ":/other/images/other/icon_fanghuzhongxin.png", ":/other/images/other/icon_fanghuzhongxin.png", "我的工具", 0));
+
+    //展示这个列表
     optionListWidget ();
     optoinScrollView ();
 
@@ -76,15 +66,14 @@ void FuctionsWidget::optionListWidget () {
     ui->listWidget->setStyleSheet ("border: none; background-color: rgba(0, 0, 0, 0)");
     ui->listWidget->setFocusPolicy(Qt::NoFocus);
     ui->listWidget->setSelectionMode (QAbstractItemView::NoSelection);
-    connect (ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)),
-             this, SLOT(onListwidgetClicked(QListWidgetItem*)));
+    connect (ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onListwidgetClicked(QListWidgetItem*)));
 
     //
     for (int i = 0; i < functionList.size (); i++) {
         FunctionsItem * fi = functionList.at (i);
 
         QListWidgetItem *item = new QListWidgetItem;
-        item->setSizeHint (QSize (140, !fi->type?60:40));
+        item->setSizeHint (QSize (140, !fi->type?60:40));   //三木运算符 0 ---> 60 1 ---> 40
         QWidget * widget = new QWidget;
 
         QWidget * back = new QWidget(widget) ;
@@ -112,7 +101,7 @@ void FuctionsWidget::optionListWidget () {
         ui->listWidget->setItemWidget (item, widget);
     }
 
-    //
+    //默认第一个item为高亮
     ui->listWidget->itemClicked (ui->listWidget->item (0));
 }
 

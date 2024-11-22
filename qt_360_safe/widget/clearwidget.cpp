@@ -11,14 +11,13 @@ ClearWidget::ClearWidget(QWidget *parent) :
 
     clearMenuWidget = NULL;
 
-    //
     ui->background->setStyleSheet ("background-color: #FFFFFF;");
-    //
     ui->pushButton->setStyleSheet ("background-color: #16da6c;border-radius: 30px;color: #FFFFFF;font-size: 25px;");
 
     ui->title->setStyleSheet ("color: #444444;font-size: 25px;");
     ui->subtitle->setStyleSheet ("color: #9b9999;font-size: 16px;");
-    //
+
+    //自定义类
     ui->wallBallWidget->setProgress (1);
     ui->wallBallWidget->setWaveMode (WaveBallMode::noWaveMode);
     ui->wallBallWidget->showScores (false);
@@ -82,10 +81,8 @@ void ClearWidget::showClearMenuWidget () {
         clearMenuWidget = new PopupWidget (this);
         clearMenuWidget->setArrow (PopupArrowDirection::LEFT, QRect(0, 70, 10, 10));
         clearMenuWidget->setGeometry (630, 150, 130, 220);
-        connect (clearMenuWidget, SIGNAL(onMouseEnterPopupWidget(PopupWidget*)), this,
-                 SLOT(onMouseEnterPopupWidgetSlot(PopupWidget*)));
-        connect (clearMenuWidget, SIGNAL(onMouseLeavePopupWidget(PopupWidget*)), this,
-                 SLOT(onMouseLeavePopupWidgetSlot(PopupWidget*)));
+        connect (clearMenuWidget, SIGNAL(onMouseEnterPopupWidget(PopupWidget*)), this, SLOT(onMouseEnterPopupWidgetSlot(PopupWidget*)));
+        connect (clearMenuWidget, SIGNAL(onMouseLeavePopupWidget(PopupWidget*)), this, SLOT(onMouseLeavePopupWidgetSlot(PopupWidget*)));
         clearMenuWidget->setWindowFlags (Qt::WindowStaysOnTopHint);
         //
         clearMenuWidget->addWidget (new ClearMenuWidget);
@@ -102,9 +99,8 @@ void ClearWidget::hideClearMenuWidget () {
     }
 }
 
-
 void ClearWidget::onHoverToolButtonHoverSlot(HoverToolButton*pb) {
-    qDebug() << "onHoverToolButtonHoverSlot";
+//    qDebug() << "onHoverToolButtonHoverSlot";
     showClearMenuWidget ();
 }
 

@@ -47,42 +47,17 @@ void OptimizeWidget::onOptimize2IntoNextSlot () {
 void OptimizeWidget::optionToolButtons () {
 
     //
-    optionToolButton (ui->tb1,
-                      QIcon(":/horse/images/horse/icon_quanpansaomiao.png"),
-                      "单项加速",
-                      QSize(34, 32),
-                      "horsewidget_toolbutton_1") ;
+    optionToolButton (ui->tb1, QIcon(":/horse/images/horse/icon_quanpansaomiao.png"), "单项加速", QSize(34, 32), "horsewidget_toolbutton_1") ;
 
-    optionToolButton (ui->tb2,
-                      QIcon(":/horse/images/horse/icon_xinrenqu.png"),
-                      "启动项",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_1") ;
-    optionToolButton (ui->tb3,
-                      QIcon(":/horse/images/horse/icon_xinrenqu.png"),
-                      "忽略项",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_2") ;
+    optionToolButton (ui->tb2, QIcon(":/horse/images/horse/icon_xinrenqu.png"), "启动项", QSize(32, 32), "horsewidget_toolbutton_1") ;
+    optionToolButton (ui->tb3, QIcon(":/horse/images/horse/icon_xinrenqu.png"), "忽略项", QSize(32, 32), "horsewidget_toolbutton_2") ;
     //
-    optionToolButton (ui->tb4, QIcon(":/horse/images/horse/icon_icon_1.png"),
-                      "开机时间",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_3") ;
-    optionToolButton (ui->tb5, QIcon(":/horse/images/horse/icon_icon_2.png"),
-                      "优化记录",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_3") ;
-    optionToolButton (ui->tb6, QIcon(":/horse/images/horse/icon_icon_3.png"),
-                      "小清新日历",
-                      QSize(32, 32),
-                      "horsewidget_toolbutton_3") ;
+    optionToolButton (ui->tb4, QIcon(":/horse/images/horse/icon_icon_1.png"), "开机时间", QSize(32, 32), "horsewidget_toolbutton_3") ;
+    optionToolButton (ui->tb5, QIcon(":/horse/images/horse/icon_icon_2.png"), "优化记录", QSize(32, 32), "horsewidget_toolbutton_3") ;
+    optionToolButton (ui->tb6, QIcon(":/horse/images/horse/icon_icon_3.png"), "小清新日历", QSize(32, 32), "horsewidget_toolbutton_3") ;
 }
 
-void OptimizeWidget::optionToolButton (QToolButton * tb,
-                                    QIcon icon,
-                                    QString text,
-                                    QSize size,
-                                    QString property) {
+void OptimizeWidget::optionToolButton (QToolButton * tb, QIcon icon, QString text, QSize size, QString property) {
     QAction *pAction = new QAction(this);
     pAction->setText(text);
     pAction->setIcon(icon);

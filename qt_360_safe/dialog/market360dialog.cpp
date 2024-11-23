@@ -2,6 +2,8 @@
 #include "ui_market360dialog.h"
 #include <qdebug.h>
 #include "qaction.h"
+#include <QUrl>
+#include <QDesktopServices>
 
 Market360Dialog::Market360Dialog(QWidget *parent) :
     QDialog(parent, Qt::FramelessWindowHint),
@@ -40,39 +42,15 @@ void Market360Dialog::on_close_clicked()
 }
 
 void Market360Dialog::optionToolButtons () {
-    optionToolButton (ui->toolButton,
-                      QIcon(":/market/images/market/market_icon_1_b.png"),
-                      "首页",
-                      QSize(30, 30),
-                      "market_toolbutton");
-    optionToolButton (ui->toolButton_2,
-                      QIcon(":/market/images/market/market_icon_2_b.png"),
-                      "手机",
-                      QSize(30, 30),
-                      "market_toolbutton");
-    optionToolButton (ui->toolButton_3,
-                      QIcon(":/market/images/market/market_icon_3_b.png"),
-                      "出行",
-                      QSize(30, 30),
-                      "market_toolbutton");
-    optionToolButton (ui->toolButton_4,
-                      QIcon(":/market/images/market/market_icon_4_b.png"),
-                      "家居",
-                      QSize(30, 30),
-                      "market_toolbutton");
-    optionToolButton (ui->toolButton_5,
-                      QIcon(":/market/images/market/market_icon_5_b.png"),
-                      "陪护",
-                      QSize(30, 30),
-                      "market_toolbutton");
+    optionToolButton (ui->toolButton, QIcon(":/market/images/market/market_icon_1_b.png"), "首页", QSize(30, 30), "market_toolbutton");
+    optionToolButton (ui->toolButton_2, QIcon(":/market/images/market/market_icon_2_b.png"), "手机", QSize(30, 30), "market_toolbutton");
+    optionToolButton (ui->toolButton_3, QIcon(":/market/images/market/market_icon_3_b.png"), "出行", QSize(30, 30), "market_toolbutton");
+    optionToolButton (ui->toolButton_4, QIcon(":/market/images/market/market_icon_4_b.png"), "家居", QSize(30, 30), "market_toolbutton");
+    optionToolButton (ui->toolButton_5, QIcon(":/market/images/market/market_icon_5_b.png"), "陪护", QSize(30, 30), "market_toolbutton");
 }
 
 
-void Market360Dialog::optionToolButton (QToolButton * tb,
-                                    QIcon icon,
-                                    QString text,
-                                    QSize size,
-                                    QString property) {
+void Market360Dialog::optionToolButton (QToolButton * tb, QIcon icon, QString text, QSize size, QString property) {
     QAction *pAction = new QAction(this);
     pAction->setText(text);
     pAction->setIcon(icon);
@@ -95,6 +73,7 @@ void Market360Dialog::setTabBarIndex (int index) {
     ui->toolButton_5->setIcon (QIcon(index==4?":/market/images/market/market_icon_5_g.png":":/market/images/market/market_icon_5_b.png"));
     ui->toolButton_5->setStyleSheet (index==4?"color: #06c655;":"color: 8b8b8b;");
 
+    //本地不能通过webview来访问浏览器，好像是我的工程文件不能加载webenginewidgets，这是一开始跑项目的时候一直留着的问题 通过借鉴mainwindow.cpp的写法，还是能够访问浏览器的
 //    QString url[] = {
 //        QString("http://mall.safe.360.cn/index.html"),
 //        QString("http://mall.safe.360.cn/list_phone.html"),
@@ -102,7 +81,18 @@ void Market360Dialog::setTabBarIndex (int index) {
 //        QString("http://mall.safe.360.cn/list_houseware.html"),
 //        QString("http://mall.safe.360.cn/list_accompany.html"),
 //    };
+
 //    createWebView (url[index]) ;
+
+    QString url[] = {
+        QString("http://mall.safe.360.cn/index.html"),
+        QString("http://mall.safe.360.cn/list_phone.html"),
+        QString("http://mall.safe.360.cn/list_trip.html"),
+        QString("http://mall.safe.360.cn/list_houseware.html"),
+        QString("http://mall.safe.360.cn/list_accompany.html"),
+    };
+    const QUrl web(url[index]);
+    QDesktopServices::openUrl(web);
  }
 
 

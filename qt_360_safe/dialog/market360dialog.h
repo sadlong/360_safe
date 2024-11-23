@@ -33,7 +33,7 @@ private slots:
 
 private:
     Ui::Market360Dialog *ui;
-    //QWebgein * webview;
+//    QWebgein * webview;
 
 private:
     void optionToolButtons ();
@@ -43,7 +43,7 @@ private:
                                         QSize size,
                                         QString property) ;
     void setTabBarIndex (int index);
-    //void createWebView (QString url) ;
+    void createWebView (QString url) ;
 };
 
 #endif // MARKET360DIALOG_H
